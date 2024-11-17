@@ -51,34 +51,34 @@
     - Routes/Course.js
     - Inject authentication middleware function in GET and POST handlers for '/Courses/Add'
 
-### Part 3 Implementing GitHub authentication
+### Part 3 Implementing Google authentication
 
 - Open a browser and navigate to https://github.com/settings/applications/new
-    - Application name should be COMP2068 Project Tracker
+    - Application name should be COMP2068 Task
     - Homepage URL is http://localhost:3000
     - Authorization callback URL is http://localhost:3000/github/callback this URL needs to change when deploying to Render or Azure
     - Generate the clientId and clientSecret values and copy them over to your .env file
     - Add three new keys named as below
-        - GITHUB_CLIENT_ID
-        - GITHUB_CLIENT_SECRET
-        - GITHUB_CALLBACK_URL
+        - Google_CLIENT_ID
+        - Google_CLIENT_SECRET
+        - Google_CALLBACK_URL
     - Add the corresponding configuration values in globals.js
         - Create a new section called Authentication
-        - Add an inner section called GitHub
+        - Add an inner section called Google
         - Add the following keys:
-            - ClientId > use process.env to access GITHUB_CLIENT_ID
-            - ClientSecret > use process.env to access GITHUB_CLIENT_SECRET
-            - CallbackUrl > use process.env to access GITHUB_CALLBACK_URL
+            - ClientId > use process.env to access Google_CLIENT_ID
+            - ClientSecret > use process.env to access Google_CLIENT_SECRET
+            - CallbackUrl > use process.env to access Google_CALLBACK_URL
 - Make sure the application is not running and install the following npm package:
-    - npm i passport-github2
-    - https://www.npmjs.com/package/passport-github2
+    - npm i passport-google-oauth20
+    - https://www.npmjs.com/package/passport--google-oauth20
 - In Models/User.js
     - Add oauthId: String to record the ID that's received from the login provider
     - Add oauthProvider: String to record the provider type (GitHub, Twitter, etc)
     - Add created: Date to record the time when the user is created in the DB
     - Note: When creating a local user, these will be blank.
 - Add a Config folder and create a globals.js file
-    - Add a new section called github and then the following variables:
+    - Add a new section called google and then the following variables:
         - clientId and clientSecret which is used by the authentication
         - callbackUrl which is the url in our application that users will be sent back to after logging in with the external provider
 - In App.js
@@ -89,9 +89,9 @@
         - new user
         - returning user
 - In Views/Login.hbs
-    - Add another login button with href="/github"
+    - Add another login button with href="/google"
 - In Routes/Index.js
     - Add a two GET handlers as specified in the documentation
-    - One handles when the user clicks "Login with GitHub" on the login page
-    - Second one handles when github.com sends the user back to us after an authentication attempt
+    - One handles when the user clicks "Login with Google" on the login page
+    - Second one handles when google.com sends the user back to us after an authentication attempt
 - Try it out and verify new users in the database
