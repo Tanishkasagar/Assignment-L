@@ -53,10 +53,10 @@
 
 ### Part 3 Implementing Google authentication
 
-- Open a browser and navigate to https://github.com/settings/applications/new
+- Open a browser and navigate to https://google.com/settings/applications/new
     - Application name should be COMP2068 Task
     - Homepage URL is http://localhost:3000
-    - Authorization callback URL is http://localhost:3000/github/callback this URL needs to change when deploying to Render or Azure
+    - Authorization callback URL is http://localhost:3000/google/callback this URL needs to change when deploying to Render or Azure
     - Generate the clientId and clientSecret values and copy them over to your .env file
     - Add three new keys named as below
         - Google_CLIENT_ID
